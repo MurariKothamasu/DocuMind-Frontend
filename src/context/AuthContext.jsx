@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext , useEffect } from "react";
 import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +9,27 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
  
+  useEffect(() => {
+    const checkAuthOnLoad = async () => {
+      try {
+        // Call the new /me endpoint to check for a valid cookie
+        const response = await api.get("/me");
+        setUser(response.data); // Set user if cookie is valid
+      } catch (error) {
+        // No valid cookie, or server error
+        setUser(null);
+      } finally {
+        // Done checking, allow app to render
+        setLoading(false);
+      }
+    };
+
+    checkAuthOnLoad();
+  }, []);
+
   const login = async (email, password) => {
     try {
       const response = await api.post("/login", { email, password });
