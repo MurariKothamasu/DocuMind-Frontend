@@ -15,14 +15,13 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuthOnLoad = async () => {
       try {
-        // Call the new /me endpoint to check for a valid cookie
         const response = await api.get("/me");
-        setUser(response.data); // Set user if cookie is valid
+        setUser(response.data); 
       } catch (error) {
-        // No valid cookie, or server error
+        
         setUser(null);
       } finally {
-        // Done checking, allow app to render
+        
         setLoading(false);
       }
     };

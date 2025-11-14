@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosConfig";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 const Extract = () => {
@@ -12,7 +13,7 @@ const Extract = () => {
   const [error, setError] = useState("");
   const [isDragOver, setIsDragOver] = useState(false); 
 
-  // Clean up object URL for file preview
+ 
   useEffect(() => {
     return () => {
       if (filePreview && filePreview.startsWith("blob:")) {
@@ -21,21 +22,20 @@ const Extract = () => {
     };
   }, [filePreview]);
 
-  // Unified function to update file state
+  
   const updateFile = (selectedFile) => {
     if (!selectedFile) return;
 
     setError("");
     setResult(null);
 
-    // Revoke old object URL if it exists
     if (filePreview && filePreview.startsWith("blob:")) {
       URL.revokeObjectURL(filePreview);
     }
 
     setFile(selectedFile);
 
-    // Create a new preview
+    
     if (selectedFile.type.startsWith("image/")) {
       setFilePreview(URL.createObjectURL(selectedFile));
     } else {
@@ -43,7 +43,7 @@ const Extract = () => {
     }
   };
 
-  // --- Event Handlers ---
+  
   const handleFileChange = (e) => {
     updateFile(e.target.files[0]);
   };
@@ -68,11 +68,11 @@ const Extract = () => {
     setFile(null);
     setFilePreview(null);
     setError("");
-    // Manually clear the file input
+    
     document.getElementById('file-upload').value = null;
   };
 
-  // --- Form Submission ---
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
@@ -101,13 +101,13 @@ const Extract = () => {
     }
   };
   
-  // --- Animation Variants ---
+  
   const tagContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Each tag appears 0.1s after the last
+        staggerChildren: 0.1, 
       },
     },
   };
@@ -120,7 +120,7 @@ const Extract = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
       
-      {/* --- Hero Text --- */}
+      
       <motion.div 
         className="text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
@@ -135,10 +135,10 @@ const Extract = () => {
         </p>
       </motion.div>
 
-      {/* --- Main Grid (1/3 and 2/3) --- */}
+      
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-        {/* --- Column 1: File Upload (1/3) --- */}
+        
         <motion.div 
           className="bg-white p-8 rounded-lg shadow-lg"
           initial={{ opacity: 0, x: -50 }}
@@ -151,7 +151,7 @@ const Extract = () => {
           
           <form onSubmit={handleSubmit} className="space-y-6">
             
-            {/* Length Selector */}
+            
             <div>
               <label className="text-sm font-medium text-gray-900">
                 Select Summary Length
@@ -178,7 +178,7 @@ const Extract = () => {
               </fieldset>
             </div>
             
-            {/* Dropzone */}
+            
             <label
               htmlFor="file-upload"
               className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer transition-colors
@@ -189,14 +189,14 @@ const Extract = () => {
               onDrop={handleDrop}
             >
               {!file ? (
-                // Default State
+                
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center">
                   <svg className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6h.1a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                   <p className="mb-2 text-sm text-gray-500"><span className="font-semibold text-red-600">Click to upload</span> or drag and drop</p>
                   <p className="text-xs text-gray-500">PDF, PNG, JPG, JPEG</p>
                 </div>
               ) : (
-                // File Preview State
+                
                 <div className="relative flex items-center justify-center w-full h-full p-4">
                   {file.type.startsWith("image/") ? (
                     <img src={filePreview} alt="Selected file preview" className="object-contain max-w-full max-h-full rounded-md" />
@@ -211,14 +211,14 @@ const Extract = () => {
               <input id="file-upload" name="file" type="file" className="hidden" onChange={handleFileChange} accept=".pdf,.docx,.txt,.png,.jpg,.jpeg"/>
             </label>
 
-            {/* Error Message */}
+            
             {error && (
               <div className="text-red-600 text-sm text-center p-2 bg-red-50 rounded-md">
                 {error}
               </div>
             )}
 
-            {/* Button Group */}
+            
             <div className="flex gap-4">
               <motion.button
                 type="submit"
@@ -249,7 +249,7 @@ const Extract = () => {
           </form>
         </motion.div>
 
-        {/* --- Column 2: Results (2/3) --- */}
+        
         <motion.div 
           className="bg-white p-8 rounded-lg shadow-lg lg:col-span-2"
           initial={{ opacity: 0, x: 50 }}
@@ -262,7 +262,7 @@ const Extract = () => {
           
           <AnimatePresence mode="wait">
             
-            {/* Loading Spinner */}
+            
             {loading && (
               <motion.div
                 key="loader"
@@ -275,7 +275,7 @@ const Extract = () => {
               </motion.div>
             )}
 
-            {/* Placeholder */}
+          
             {!loading && !result && (
               <motion.div
                 key="placeholder"
@@ -288,7 +288,7 @@ const Extract = () => {
               </motion.div>
             )}
 
-            {/* Results */}
+            
             {result && (
               <motion.div
                 key="results"
@@ -300,7 +300,7 @@ const Extract = () => {
               >
                 
 
-                {/* Summary */}
+                
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     Summary
@@ -310,7 +310,7 @@ const Extract = () => {
                   </p>
                 </div>
 
-                {/* Animated Key Points */}
+                
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     Key Points
@@ -325,7 +325,7 @@ const Extract = () => {
                       <motion.span 
                         key={index} 
                         className="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full"
-                        variants={tagItemVariants} // Use the item animation
+                        variants={tagItemVariants} 
                       >
                         {point}
                       </motion.span>

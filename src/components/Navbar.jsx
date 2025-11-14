@@ -16,8 +16,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white text-gray-800 p-4 flex justify-between items-center shadow-md">
       
-      {/* --- Left Side: Logo/Brand --- */}
-      {/* We've paired the text with an icon */}
+      
       <Link to="/" className="flex items-center gap-2">
         <DocumentTextIcon className="w-8 h-8 text-red-600" />
         <span className="text-2xl font-bold font-display text-gray-900">
@@ -25,12 +24,12 @@ const Navbar = () => {
         </span>
       </Link>
 
-      {/* --- Right Side: Links --- */}
+      
       <div className="flex items-center gap-4">
         {isLoggedIn ? (
-          // --- If User IS Logged In ---
+          
           <>
-            {/* We've added a user icon for a more 'human' feel */}
+            
             <span className="font-medium flex items-center gap-2">
               <UserCircleIcon className="w-6 h-6 text-gray-500" />
               Welcome, {user?.firstName}
@@ -44,9 +43,9 @@ const Navbar = () => {
             </motion.button>
           </>
         ) : (
-          // --- If User is NOT Logged In ---
+          
           <>
-            {/* "Login" is now a subtle "ghost" button */}
+            
             <motion.div whileTap={{ scale: 0.98 }}>
               <Link 
                 to="/login" 
@@ -56,7 +55,7 @@ const Navbar = () => {
               </Link>
             </motion.div>
             
-            {/* "Sign Up" is the primary action button */}
+            
             <motion.div whileTap={{ scale: 0.98 }}>
               <Link
                 to="/signup"

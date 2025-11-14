@@ -43,11 +43,10 @@ const Login = () => {
         transition={{ duration: 0.5 }}
       >
 
-        {/* --- Left Column (Visual Side) --- */}
-        {/* Changed to flex-col and justify-between */}
+        
         <div className="hidden md:flex md:flex-col md:justify-between bg-red-600 p-12 text-white">
           
-          {/* Top Content */}
+          
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -61,7 +60,7 @@ const Login = () => {
             </p>
           </motion.div>
 
-          {/* Bottom Content (Pushed to bottom by justify-between) */}
+          
           <motion.div 
             className="text-3xl font-bold"
             initial={{ opacity: 0 }}
@@ -72,7 +71,7 @@ const Login = () => {
           </motion.div>
         </div>
 
-        {/* --- Right Column (Form Side) --- */}
+        
         <div className="p-8 md:p-12">
           
           <div>
@@ -91,7 +90,7 @@ const Login = () => {
             <input type="hidden" name="remember" defaultValue="true" />
             
             <div className="rounded-md shadow-sm -space-y-px">
-              {/* Email Input */}
+              
               <div>
                 <label htmlFor="email-address" className="sr-only">Email address</label>
                 <input
@@ -106,7 +105,7 @@ const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              {/* Password Input */}
+              
               <div>
                 <label htmlFor="password" className="sr-only">Password</label>
                 <input
@@ -123,7 +122,7 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Error Message */}
+           
             <div className="h-4">
               {error && (
                 <div className="text-red-600 text-sm text-left">
@@ -132,7 +131,7 @@ const Login = () => {
               )}
             </div>
 
-            {/* Submit Button */}
+            
             <div>
               <motion.button
                 type="submit"
