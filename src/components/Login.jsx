@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
+
+//Login Component
+//Handle User Login and Navigate to the extract Page
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

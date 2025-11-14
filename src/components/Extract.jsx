@@ -3,6 +3,8 @@ import api from "../api/axiosConfig";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
+
+// extract Component that take file from dragand Drop and generate summary and key points
 const Extract = () => {
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null); 
@@ -120,7 +122,7 @@ const Extract = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
       
-      
+      {/* Hero Text At top Of Page */}
       <motion.div 
         className="text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
@@ -138,7 +140,7 @@ const Extract = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-        
+        {/* //Left Grid For File Upload */}
         <motion.div 
           className="bg-white p-8 rounded-lg shadow-lg"
           initial={{ opacity: 0, x: -50 }}
@@ -288,7 +290,7 @@ const Extract = () => {
               </motion.div>
             )}
 
-            
+            {/* //Summarized Div on the right Side */}
             {result && (
               <motion.div
                 key="results"

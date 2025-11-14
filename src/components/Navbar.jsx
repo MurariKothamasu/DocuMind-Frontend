@@ -6,6 +6,10 @@ import { motion } from 'framer-motion';
 
 import { DocumentTextIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 
+
+//Navbar Component
+//Dynamic navbar that Shoes Login signup on loginpage or signup page and when loged in it will show user name and logiut option 
+//on right side having the logo of application
 const Navbar = () => {
   const { user, isLoggedIn, logout } = useAuth();
 

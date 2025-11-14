@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
-
+// This is the main brain of the authentication and allows users to log in to the site.
+// It provides access for all components and other files to access the same variables,
+// such as user data and authentication status (isLoggedIn, logout).
+// It manages the global state of these variables.
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();

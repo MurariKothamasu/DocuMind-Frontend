@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from "framer-motion"; // 1. Import AnimatePre
 // 2. Import icons for the checklist
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
+
+//signup Component 
+//take firstname , last name emial password nad for password it have a cretieria also when the cretia meets it will allow user to signup and takes to extract page
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -27,7 +30,7 @@ const Signup = () => {
 
   const { signup } = useAuth();
 
-  // --- 4. useEffect to validate password on change ---
+  // useEffect to validate password on change
   useEffect(() => {
     setCriteria({
       lowercase: /[a-z]/.test(password),
@@ -42,7 +45,7 @@ const Signup = () => {
     e.preventDefault();
     setError(null);
 
-    // 5. Check if all criteria are met before submitting
+    // Check if all criteria are met before submitting
     const allCriteriaMet = Object.values(criteria).every(Boolean);
     if (!allCriteriaMet && password.length > 0) { // Only show if user tried to type
       setError("Password does not meet all criteria.");
@@ -66,7 +69,7 @@ const Signup = () => {
     }
   };
 
-  // 6. Helper component for the criteria list item
+  // Helper component for the criteria list item
   const CriteriaItem = ({ label, met }) => (
     <motion.li 
       className={`flex items-center text-sm ${met ? 'text-green-600' : 'text-gray-500'} transition-colors`}
